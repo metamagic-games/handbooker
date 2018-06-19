@@ -28,32 +28,34 @@ const tagRegex = new RegExp(
 	"g"
 );
 
-export const parseHTML = (targetURL, markdownOptions) => {
+export const parseHTML = (targetURL, style, markdownOptions) => {
 	return `
 		<html>
 			<head>
 				<style>
-					${fs.readFileSync("styles/homebrewery-styles.css", function(err) {
+					${fs.readFileSync(style, function(err) {
 						if (err) console.log(err);
 					})}
 				</style>
 			</head>
 			
 			<body class = "document">
-				${
-					Markdown(
-						fs.readFileSync(
-							targetURL, 
-							markdownOptions.encoding
-						), 
-						{ renderer: renderer }
-					)
-					.split("//page")
-					.map((x, i) => {
-						return `<div class="phb" id = "p${i + 1}">${x}</div>`;
-					})
-					.join(" ")
-				}
+				<div class = "pages">
+					${
+						Markdown(
+							fs.readFileSync(
+								targetURL, 
+								markdownOptions.encoding
+							), 
+							{ renderer: renderer }
+						)
+						.split("//page")
+						.map((x, i) => {
+							return `<div class="phb" id = "p${i + 1}">${x}</div>`;
+						})
+						.join(" ")
+					}
+				</div>
 			</body>
 		</html>
 	`;

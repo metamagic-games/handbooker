@@ -3,18 +3,19 @@ import pdf from "html-pdf";
 import { parseHTML, } from "./generateHTML.js";
 
 const markdownOptions = {
-	encoding: "utf8",
+	"encoding": "utf8",
 };
 
 const pdfOptions = {
-	format: "letter",
-	orientation: "portrait",
-	border: 0,
-	base: "../",
+	"format": "letter",
+	"orientation": "portrait",
+	"border": 0,
 };
 
-const generatePDF = (url, options) => {
-	const html = parseHTML("Hello world", options.target);
+const generatePDF = ( target, destination, options, ) => {
+	const html = parseHTML( target, options.style, ( options.markdownOptions || markdownOptions ) );
+
+	console.log("Options:", options);
 
 	if (options.debug) {
 		console.log("Saving interim HTML...");
@@ -26,8 +27,8 @@ const generatePDF = (url, options) => {
 
 	console.log("Creating PDF...");
 
-	pdf.create(html, pdfOptions).toFile( 
-		options.destination,
+	pdf.create( html, ( options.pdfOptions || pdfOptions ) ).toFile( 
+		destination,
 		function(err) {
 			if (err) return console.log(err);
 		}

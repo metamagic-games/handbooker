@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "mcclowes-scripts build",
+    "build": "mcclowes-scripts build && copyup src/styles/* lib",
     "watch": "mcclowes-scripts watch",
     "format": "mcclowes-scripts format"
   },
@@ -48,7 +48,12 @@
   "homepage": "https://github.com/monolith-games/handbooker#readme",
   "dependencies": {
     "codogo-utility-functions": "^1.0.4",
+    "copyfiles": "^2.0.0",
+    "fs": "0.0.1-security",
     "gatsby-link": "^1.6.44",
+    "html-pdf": "^2.2.0",
+    "lodash": "^4.17.10",
+    "marked": "^0.4.0",
     "pre-commit": "^1.2.2",
     "react": "16.3.2",
     "react-addons-transition-group": "^15.6.2",

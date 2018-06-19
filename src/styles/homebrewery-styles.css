@@ -233,8 +233,8 @@ body {
 	z-index: 15;
 	box-sizing: border-box;
 	overflow: hidden;
-	height: 100%; /*279.4mm;*/
-	width: 100% /* 215.9mm; */
+	height: 279.4mm;
+	width: 215.9mm;
 	padding: 1cm 1.7cm;
 	padding-bottom: 1.5cm;
 	background-color: #eee5ce;
