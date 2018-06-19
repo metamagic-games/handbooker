@@ -1,0 +1,57 @@
+{
+  "name": "handbooker",
+  "version": "0.1.0",
+  "description": "Turn markdown into a players handbook",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "mcclowes-scripts build",
+    "watch": "mcclowes-scripts watch",
+    "format": "mcclowes-scripts format"
+  },
+  "eslintConfig": {
+    "extends": "mcclowes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monolith-games/handbooker.git"
+  },
+  "keywords": [
+    "players",
+    "handbook",
+    "d&d",
+    "dnd",
+    "tabletop",
+    "gaming",
+    "markdown",
+    "pdf",
+    "homebrewery"
+  ],
+  "files": [
+    "lib"
+  ],
+  "author": "Max Clayton Clowes <maxcc@me.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monolith-games/handbooker/issues"
+  },
+  "homepage": "https://github.com/monolith-games/handbooker#readme",
+  "dependencies": {
+    "codogo-utility-functions": "^1.0.4",
+    "gatsby-link": "^1.6.44",
+    "react": "16.3.2",
+    "react-addons-transition-group": "^15.6.2",
+    "slugify": "^1.2.9",
+    "styled-components": "^3.2.3",
+    "velocity-animate": "^1.5.1"
+  },
+  "devDependencies": {
+    "mcclowes-scripts": "^0.3.5",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "eslint": "^4.18.2",
+    "prettier": "^1.11.1"
+  }
+}
