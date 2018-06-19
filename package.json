@@ -11,6 +11,9 @@
     "watch": "mcclowes-scripts watch",
     "format": "mcclowes-scripts format"
   },
+  "pre-commit": [
+    "build"
+  ],
   "babel": {
     "presets": [
       "mcclowes"
@@ -46,6 +49,7 @@
   "dependencies": {
     "codogo-utility-functions": "^1.0.4",
     "gatsby-link": "^1.6.44",
+    "pre-commit": "^1.2.2",
     "react": "16.3.2",
     "react-addons-transition-group": "^15.6.2",
     "slugify": "^1.2.9",
