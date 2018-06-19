@@ -1,19 +1,21 @@
 import fs from "fs";
-import pdf from "html-pdf";
+import * as htmlPdfChrome from "html-pdf-chrome";
 import { parseHTML, } from "./generateHTML.js";
+
+const pdfOptions = {
+	"printOptions": {
+		displayHeaderFooter: false,
+	},
+};
 
 const markdownOptions = {
 	"encoding": "utf8",
 };
 
-const pdfOptions = {
-	"format": "letter",
-	"orientation": "portrait",
-	"border": 0,
-};
+const style = "../styles/homebrewery-styles.css";
 
 const generatePDF = ( target, destination, options, ) => {
-	const html = parseHTML( target, options.style, ( options.markdownOptions || markdownOptions ) );
+	const html = parseHTML( target, ( options.style || style ), ( options.markdownOptions || markdownOptions ) );
 
 	console.log("Options:", options);
 
@@ -27,12 +29,10 @@ const generatePDF = ( target, destination, options, ) => {
 
 	console.log("Creating PDF...");
 
-	pdf.create( html, ( options.pdfOptions || pdfOptions ) ).toFile( 
-		destination,
-		function(err) {
-			if (err) return console.log(err);
-		}
-	);
+	htmlPdfChrome.create(
+		html, 
+		( options.pdfOptions || pdfOptions )
+	).then((newPdf) => newPdf.toFile(destination || "test.pdf"));
 };
 
 export default generatePDF;
