@@ -1,6 +1,6 @@
 import fs from "fs";
 import pdf from "html-pdf";
-import generateHTML from "./generateHTML.js";
+import { generateHTML, } from "./generateHTML.js";
 
 const markdownOptions = {
 	encoding: "utf8",

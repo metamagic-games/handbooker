@@ -1,4 +1,5 @@
 import  _ from "lodash";
+import fs from "fs";
 import  Markdown from "marked";
 
 const renderer = new Markdown.Renderer();
@@ -27,95 +28,33 @@ const tagRegex = new RegExp(
 	"g"
 );
 
-export default class generateHTML {
-	parse(targetURL) {
-		return `
-			<html>
-				<head>
-					<style>
-						${fs.readFileSync("styles/homebrewery-styles.css", function(err) {
-							if (err) console.log(err);
-						})}
-					</style>
-				</head>
-				
-				<body class = "document">
-					${
-						Markdown(
-							fs.readFileSync(
-								targetURL, 
-								markdownOptions.encoding
-							), 
-							{ renderer: renderer }
-						)
-						.split("//page")
-						.map((x, i) => {
-							return `<div class="phb" id = "p${i + 1}">${x}</div>`;
-						})
-						.join(" ")
-					}
-				</body>
-			</html>
-		`;
-	}
-
-	validate(rawBrewText) {
-		const errors = [];
-
-		const leftovers = _.reduce(
-			rawBrewText.split("\n"),
-			(acc, line, _lineNumber) => {
-				const lineNumber = _lineNumber + 1;
-
-				const matches = line.match(tagRegex);
-
-				if (!matches || !matches.length) return acc;
-
-				_.each(matches, (match) => {
-					_.each(tagTypes, (type) => {
-						if (match == `<${type}`) {
-							acc.push({
-								type: type,
-								line: lineNumber
-							});
-						}
-						if (match === `</${type}>`) {
-							if (!acc.length) {
-								errors.push({
-									line: lineNumber,
-									type: type,
-									text: "Unmatched closing tag",
-									id: "CLOSE"
-								});
-							} else if (_.last(acc).type == type) {
-								acc.pop();
-							} else {
-								errors.push({
-									line: `${_.last(acc).line} to ${lineNumber}`,
-									type: type,
-									text: "Type mismatch on closing tag",
-									id: "MISMATCH"
-								});
-								acc.pop();
-							}
-						}
-					});
-				});
-
-				return acc;
-			},
-			[]
-		);
-
-		_.each(leftovers, (unmatched) => {
-			errors.push({
-				line: unmatched.line,
-				type: unmatched.type,
-				text: "Unmatched opening tag",
-				id: "OPEN"
-			});
-		});
-
-		return errors;
-	}
+export const parseHTML = (targetURL, markdownOptions) => {
+	return `
+		<html>
+			<head>
+				<style>
+					${fs.readFileSync("styles/homebrewery-styles.css", function(err) {
+						if (err) console.log(err);
+					})}
+				</style>
+			</head>
+			
+			<body class = "document">
+				${
+					Markdown(
+						fs.readFileSync(
+							targetURL, 
+							markdownOptions.encoding
+						), 
+						{ renderer: renderer }
+					)
+					.split("//page")
+					.map((x, i) => {
+						return `<div class="phb" id = "p${i + 1}">${x}</div>`;
+					})
+					.join(" ")
+				}
+			</body>
+		</html>
+	`;
 };
