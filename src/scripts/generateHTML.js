@@ -49,7 +49,7 @@ export const parseHTML = (targetURL, style, markdownOptions) => {
 		), 
 		{ renderer: renderer, }
 	)
-		.split("\page")
+		.split("\\page")
 		.map((x, i) => {
 			return `<div class="phb" id = "p${i + 1 }">${x }</div>`;
 		})
