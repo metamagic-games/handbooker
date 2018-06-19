@@ -11,6 +11,11 @@
     "watch": "mcclowes-scripts watch",
     "format": "mcclowes-scripts format"
   },
+  "babel": {
+    "presets": [
+      "mcclowes"
+    ]
+  },
   "eslintConfig": {
     "extends": "mcclowes"
   },
