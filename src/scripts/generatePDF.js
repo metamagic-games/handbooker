@@ -1,6 +1,6 @@
 import fs from "fs";
 import pdf from "html-pdf";
-import { generateHTML, } from "./generateHTML.js";
+import { parseHTML, } from "./generateHTML.js";
 
 const markdownOptions = {
 	encoding: "utf8",
@@ -14,7 +14,7 @@ const pdfOptions = {
 };
 
 const generatePDF = (url, options) => {
-	const html = generateHTML("Hello world", options.target);
+	const html = parseHTML("Hello world", options.target);
 
 	if (options.debug) {
 		console.log("Saving interim HTML...");
