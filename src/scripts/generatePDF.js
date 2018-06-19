@@ -14,7 +14,7 @@ const pdfOptions = {
 };
 
 const generatePDF = (url, options) => {
-	const html = generateHTML.parse("Hello world", options.target);
+	const html = generateHTML("Hello world", options.target);
 
 	if (options.debug) {
 		console.log("Saving interim HTML...");
