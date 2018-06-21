@@ -1,5 +1,7 @@
 # handbooker
 
+[![npm version](https://badge.fury.io/js/handbooker.svg)](https://badge.fury.io/js/handbooker)
+
 Turn markdown into a Player's Handbook-style document. 
 
 Based on [Homebrewery](https://github.com/stolksdorf/homebrewery)'s stylesheet.
