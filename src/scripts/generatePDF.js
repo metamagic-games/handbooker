@@ -2,6 +2,8 @@ import fs from "fs";
 import * as htmlPdfChrome from "html-pdf-chrome";
 import { parseHTML, } from "./generateHTML.js";
 
+// ---------------------------------
+
 const pdfOptions = {
 	"printOptions": {
 		displayHeaderFooter: false,
@@ -13,6 +15,8 @@ const markdownOptions = {
 };
 
 const style = "../styles/homebrewery-styles.css";
+
+// ---------------------------------
 
 const generatePDF = ( target, destination, options, ) => {
 	const html = parseHTML( target, ( options.style || style ), ( options.markdownOptions || markdownOptions ) );
