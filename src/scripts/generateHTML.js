@@ -2,6 +2,8 @@ import  _ from "lodash";
 import fs from "fs";
 import  Markdown from "marked";
 
+// ---------------------------------------
+
 const renderer = new Markdown.Renderer();
 
 //Processes the markdown within an HTML block if it's just a class-wrapper
@@ -19,21 +21,14 @@ renderer.html = function(html) {
 	return html;
 };
 
-const tagTypes = [ "div", "span", "a", ];
-
-const tagRegex = new RegExp(
-	`(${ _.map(tagTypes, (type) => {
-		return `\\<${type }|\\</${type }>`;
-	}).join("|") })`,
-	"g"
-);
+// ---------------------------------------
 
 export const parseHTML = (targetURL, style, markdownOptions) => {
 	return `
 		<html>
 			<head>
 				<style>
-					${fs.readFileSync(style, function(err) {
+					${ fs.readFileSync(style, function(err) {
 		if (err) console.log(err);
 	}) }
 				</style>
@@ -50,8 +45,8 @@ export const parseHTML = (targetURL, style, markdownOptions) => {
 		{ renderer: renderer, }
 	)
 		.split("\\page")
-		.map((x, i) => {
-			return `<div class="phb" id = "p${i + 1 }">${x }</div>`;
+		.map(( page,  pageCount) => {
+			return `<div class="phb" id = "p${ pageCount + 1 }">${ page }</div>`;
 		})
 		.join(" ")
 }
