@@ -27,3 +27,15 @@ Based on [Homebrewery](https://github.com/stolksdorf/homebrewery)'s stylesheet.
 
   handbooker( target, destination, options);
 ```
+
+## Merging multiple files
+
+To merge many different Markdown files, simply replace:
+```
+    const target = "./rulebook.md";
+```
+
+With:
+```
+    const target = [ "./rulebook.md", "./rulebook2.md", ];
+```
