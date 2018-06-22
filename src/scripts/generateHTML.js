@@ -23,35 +23,42 @@ renderer.html = function(html) {
 
 // ---------------------------------------
 
-export const parseHTML = (targetURL, style, markdownOptions) => {
+const parseHTML = ( target, markdownOptions, ) => {
+	return Markdown(
+		fs.readFileSync(
+			target, 
+			markdownOptions.encoding
+		), 
+		{ renderer: renderer, }
+	).split("\\page")
+		.map(( page,  pageCount) => {
+			return `<div class="phb" id = "p${ pageCount + 1 }">${ page }</div>`;
+		})
+		.join(" ");
+};
+
+const generateHTML = (target, style, markdownOptions, ) => {
+	const html = Array.isArray(target) ? target.map( path => parseHTML( path, markdownOptions, ) ).join(" ") : parseHTML( target, markdownOptions, );
+
+	console.log(html);
+
 	return `
 		<html>
 			<head>
 				<style>
 					${ fs.readFileSync(style, function(err) {
-		if (err) console.log(err);
-	}) }
+						if (err) console.log(err);
+					}) }
 				</style>
 			</head>
 			
 			<body class = "document">
 				<div class = "pages">
-					${
-	Markdown(
-		fs.readFileSync(
-			targetURL, 
-			markdownOptions.encoding
-		), 
-		{ renderer: renderer, }
-	)
-		.split("\\page")
-		.map(( page,  pageCount) => {
-			return `<div class="phb" id = "p${ pageCount + 1 }">${ page }</div>`;
-		})
-		.join(" ")
-}
+					${ html }
 				</div>
 			</body>
 		</html>
-`;
+	`;
 };
+
+export { generateHTML, };

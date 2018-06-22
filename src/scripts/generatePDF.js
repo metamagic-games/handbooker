@@ -1,6 +1,6 @@
 import fs from "fs";
 import * as htmlPdfChrome from "html-pdf-chrome";
-import { parseHTML, } from "./generateHTML.js";
+import { generateHTML, } from "./generateHTML.js";
 
 // ---------------------------------
 
@@ -19,7 +19,7 @@ const style = "../styles/homebrewery-styles.css";
 // ---------------------------------
 
 const generatePDF = ( target, destination, options, ) => {
-	const html = parseHTML( target, ( options.style || style ), ( options.markdownOptions || markdownOptions ) );
+	const html = generateHTML( target, ( options.style || style ), ( options.markdownOptions || markdownOptions ) );
 
 	console.log("Options:", options);
 

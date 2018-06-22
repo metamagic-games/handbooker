@@ -6,14 +6,6 @@
   "directories": {
     "lib": "lib"
   },
-  "scripts": {
-    "build": "mcclowes-scripts build && copyup src/styles/* lib",
-    "watch": "mcclowes-scripts watch",
-    "format": "mcclowes-scripts format"
-  },
-  "pre-commit": [
-    "build"
-  ],
   "babel": {
     "presets": [
       "mcclowes"
@@ -46,6 +38,14 @@
     "url": "https://github.com/monolith-games/handbooker/issues"
   },
   "homepage": "https://github.com/monolith-games/handbooker#readme",
+  "scripts": {
+    "build": "mcclowes-scripts build && copyup src/styles/* lib",
+    "watch": "mcclowes-scripts watch",
+    "format": "mcclowes-scripts format"
+  },
+  "pre-commit": [
+    "build"
+  ],
   "dependencies": {
     "copyfiles": "^2.0.0",
     "fs": "0.0.1-security",
