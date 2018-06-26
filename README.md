@@ -10,7 +10,7 @@ Based on [Homebrewery](https://github.com/stolksdorf/homebrewery)'s stylesheet.
 
 ## Usage
 
-For a working example, take a look at <https://github.com/paragon-games/handbooker-sample-project>
+For a working example, take a look at [handbooker-sample-project](https://github.com/paragon-games/handbooker-sample-project)
 
 ```
   const { handbooker, } = require("handbooker");
