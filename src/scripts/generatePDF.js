@@ -14,12 +14,16 @@ const markdownOptions = {
 	"encoding": "utf8",
 };
 
-const style = "../styles/homebrewery-styles.css";
+const stylesheets = {
+	"dnd": "./node_modules/handbooker/lib/styles/homebrewery-styles.css",
+};
 
 // ---------------------------------
 
 const generatePDF = ( target, destination, options, ) => {
-	const html = generateHTML( target, ( options.style || style ), ( options.markdownOptions || markdownOptions ) );
+	const style = options.customStyles ? options.customStyles : ( stylesheets[options.style] || stylesheets.dnd );
+
+	const html = generateHTML( target, style, ( options.markdownOptions || markdownOptions ) );
 
 	console.log("Options:", options);
 

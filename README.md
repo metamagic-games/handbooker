@@ -21,7 +21,7 @@ For a working example, take a look at [handbooker-sample-project](https://github
 
   const options = {
     "debug": true,
-    "style": "./node_modules/handbooker/lib/styles/homebrewery-styles.css",
+    "style": "dnd",
     "printOptions": {
       displayHeaderFooter: false,
     },
@@ -43,6 +43,32 @@ With:
 ```
 
 ---
+
+## Styles
+
+This package can support creation of documents in the style of several different games. 
+
+### Included styles
+
+The default style is the 5e D&D Player's Handbook. Feel free to add other stylesheets to this package.
+
+To select from an included style sheet:
+
+```
+  const options = {
+    "style": "dnd",
+  };
+```
+
+### Custom styles
+
+To use your own:
+
+```
+  const options = {
+    "customStyles": "your/custom/stylesheet.css",
+  };
+```
 
 ## Why not just use [Homebrewery](http://homebrewery.naturalcrit.com/)?
 

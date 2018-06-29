@@ -40,15 +40,13 @@ const parseHTML = ( target, markdownOptions, ) => {
 const generateHTML = (target, style, markdownOptions, ) => {
 	const html = Array.isArray(target) ? target.map( path => parseHTML( path, markdownOptions, ) ).join(" ") : parseHTML( target, markdownOptions, );
 
-	console.log(html);
+	const css = fs.readFileSync(style, function(err) { if (err) console.log(err); });
 
 	return `
 		<html>
 			<head>
 				<style>
-					${ fs.readFileSync(style, function(err) {
-						if (err) console.log(err);
-					}) }
+					${ css }
 				</style>
 			</head>
 			
