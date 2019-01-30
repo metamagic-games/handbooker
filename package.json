@@ -41,7 +41,9 @@
   "scripts": {
     "build": "mcclowes-scripts build && copyup src/styles/* lib",
     "watch": "mcclowes-scripts watch",
-    "format": "mcclowes-scripts format"
+    "format": "mcclowes-scripts format",
+    "test": "jest",
+    "test:watch": "jest --watch --runInBand --bail"
   },
   "pre-commit": [
     "build"
@@ -50,6 +52,7 @@
     "copyfiles": "^2.0.0",
     "fs": "0.0.1-security",
     "html-pdf-chrome": "^0.5.0",
+    "jest": "^24.0.0",
     "marked": "^0.4.0"
   },
   "devDependencies": {
