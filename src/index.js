@@ -1,1 +1,1 @@
-export { default as handbooker, } from "./scripts/generatePDF";
+export { default as handbooker, } from "./scripts/generate/pdf";

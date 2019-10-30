@@ -1,13 +1,13 @@
 import  _ from "lodash";
-import fs from "fs";
 import  Markdown from "marked";
+import fs from "fs";
 
 // ---------------------------------------
 
 const renderer = new Markdown.Renderer();
 
 //Processes the markdown within an HTML block if it's just a class-wrapper
-renderer.html = function(html) {
+renderer.html = (html) => {
 	if (_.startsWith(_.trim(html), "<div") && _.endsWith(_.trim(html), "</div>")) {
 		const openTag = html.substring(0, html.indexOf(">") + 1);
 
@@ -23,22 +23,25 @@ renderer.html = function(html) {
 
 // ---------------------------------------
 
-const parseHTML = ( target, markdownOptions, ) => {
+const parseHtml = ( target, markdownOptions, ) => {
 	return Markdown(
 		fs.readFileSync(
 			target, 
 			markdownOptions.encoding
 		), 
 		{ renderer: renderer, }
-	).split("\\page")
+	)
+		.split("\\page")
 		.map(( page,  pageCount) => {
 			return `<div class="phb" id = "p${ pageCount + 1 }">${ page }</div>`;
 		})
 		.join(" ");
 };
 
-const generateHTML = (target, style, markdownOptions, ) => {
-	const html = Array.isArray(target) ? target.map( path => parseHTML( path, markdownOptions, ) ).join(" ") : parseHTML( target, markdownOptions, );
+const generateHtml = (target, style, markdownOptions, ) => {
+	const html = Array.isArray(target) 
+		? target.map( path => parseHtml( path, markdownOptions, ) ).join(" ") 
+		: parseHtml( target, markdownOptions, );
 
 	const css = fs.readFileSync(style, function(err) { if (err) console.log(err); });
 
@@ -59,4 +62,4 @@ const generateHTML = (target, style, markdownOptions, ) => {
 	`;
 };
 
-export { generateHTML, };
+export default generateHtml
