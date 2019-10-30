@@ -4,8 +4,8 @@ import generateHtml from "../html";
 
 // ---------------------------------
 
-const height = 282 
-const width = 216
+const HEIGHT = 282 
+const WIDTH = 216
 
 const stylesheets = {
   "dnd": "./node_modules/handbooker/lib/styles/homebrewery-styles.css",
@@ -13,8 +13,8 @@ const stylesheets = {
 
 const elementDimensions = {
   "page": {
-    "height": height,
-    "width": width,
+    "height": HEIGHT,
+    "width": WIDTH,
     "padding": 5,
   },
   "card": {
@@ -26,12 +26,15 @@ const elementDimensions = {
 }
 
 const defaultPdfOptions = {
-  "printOptions": {
-    "displayHeaderFooter": false,
-    marginTop: 0,
-    marginRight: 0,
-    marginLeft: 0,
+  printOptions: {
+    displayHeaderFooter: false,
     marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+    printBackground: true,
+    //paperHeight: HEIGHT,
+    //paperWidth: WIDTH,
     // marginTop: elementDimensions.page.margin,
     // marginRight: elementDimensions.page.margin,
     // marginLeft: elementDimensions.page.margin,
@@ -47,14 +50,16 @@ const defaultMarkdownOptions = {
 
 const generatePdf = async ( target, destination="./output.pdf", options, ) => {
   console.log('Starting...')
-  
-  console.log("Options:", options);
 
   const style = options.customStyles 
     ? options.customStyles 
     : ( stylesheets[options.style] || stylesheets.dnd );
 
+  console.log("Stylesheet:", style);
+
   const markdownOptions = ( options.markdownOptions || defaultMarkdownOptions )
+
+  console.log("Markdown options:", markdownOptions);
 
   const html = await generateHtml( target, style, markdownOptions );
 
@@ -69,6 +74,8 @@ const generatePdf = async ( target, destination="./output.pdf", options, ) => {
   console.log("Creating PDF...");
 
   const printOptions = options.pdfOptions || defaultPdfOptions
+
+  console.log("Print options:", printOptions);
 
   return htmlPdfChrome
     .create(
