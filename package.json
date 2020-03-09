@@ -56,7 +56,7 @@
     "marked": "^0.4.0"
   },
   "devDependencies": {
-    "mcclowes-scripts": "^0.3.6",
+    "mcclowes-scripts": "^0.11.1",
     "pre-commit": "^1.2.2"
   }
 }
