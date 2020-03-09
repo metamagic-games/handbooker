@@ -6,14 +6,6 @@
   "directories": {
     "lib": "lib"
   },
-  "babel": {
-    "presets": [
-      "mcclowes"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "mcclowes"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/monolith-games/handbooker.git"
@@ -39,9 +31,9 @@
   },
   "homepage": "https://github.com/monolith-games/handbooker#readme",
   "scripts": {
-    "build": "mcclowes-scripts build && copyup src/styles/* lib",
-    "watch": "mcclowes-scripts watch",
-    "format": "mcclowes-scripts format",
+    "build": "./node_modules/.bin/babel src --out-dir lib --ignore '**/*.spec.js' && copyup src/styles/* lib",
+    "format": "pretty-quick --staged",
+    "format:hard": "prettier",
     "test": "jest",
     "test:watch": "jest --watch --runInBand --bail"
   },
@@ -52,11 +44,16 @@
     "copyfiles": "^2.0.0",
     "fs": "0.0.1-security",
     "html-pdf-chrome": "^0.5.0",
-    "jest": "^24.0.0",
     "marked": "^0.4.0"
   },
   "devDependencies": {
-    "mcclowes-scripts": "^0.3.6",
-    "pre-commit": "^1.2.2"
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "babel-jest": "^25.1.0",
+    "jest": "^25.1.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
   }
 }

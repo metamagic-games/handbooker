@@ -1,49 +1,38 @@
 import  _ from "lodash";
-import  Markdown from "marked";
-import fs from "fs";
 
-// ---------------------------------------
+import readStylesheet from './readStylesheet'
+import readMarkdownFile from './readMarkdownFile'
+import markdownToHtml from './markdownToHtml'
 
-const renderer = new Markdown.Renderer();
-
-//Processes the markdown within an HTML block if it's just a class-wrapper
-renderer.html = (html) => {
-	if (_.startsWith(_.trim(html), "<div") && _.endsWith(_.trim(html), "</div>")) {
-		const openTag = html.substring(0, html.indexOf(">") + 1);
-
-		html = html.substring(html.indexOf(">") + 1);
-
-		html = html.substring(0, html.lastIndexOf("</div>"));
-
-		return `${ openTag } ${ Markdown(html) } </div>`;
-	}
-
-	return html;
+const STYLESHEETS = {
+  "dnd": "./node_modules/handbooker/lib/styles/homebrewery-styles.css",
 };
 
-// ---------------------------------------
-
-const parseHtml = ( target, markdownOptions, ) => {
-	return Markdown(
-		fs.readFileSync(
-			target, 
-			markdownOptions.encoding
-		), 
-		{ renderer: renderer, }
-	)
-		.split("\\page")
-		.map(( page,  pageCount) => {
-			return `<div class="phb" id = "p${ pageCount + 1 }">${ page }</div>`;
-		})
-		.join(" ");
+const MARKDOWN_OPTIONS_DEFAULT = {
+  "encoding": "utf8",
 };
 
-const generateHtml = (target, style, markdownOptions, ) => {
+const generateHtml = (target, options={} ) => {
+	console.log("Generating HTML...")
+
+	const styleOptions = options.customStyles 
+    ? options.customStyles 
+    : ( STYLESHEETS[options.style] || STYLESHEETS.dnd );
+
+  const markdownOptions = options.markdownOptions || MARKDOWN_OPTIONS_DEFAULT
+
 	const html = Array.isArray(target) 
-		? target.map( path => parseHtml( path, markdownOptions, ) ).join(" ") 
-		: parseHtml( target, markdownOptions, );
+		? target.map(path => {
+				return markdownToHtml(
+					readMarkdownFile(path, markdownOptions)
+				)
+			})
+				.join(" ") 
+		: markdownToHtml(
+			readMarkdownFile(target, markdownOptions)
+		)
 
-	const css = fs.readFileSync(style, function(err) { if (err) console.log(err); });
+	const css = readStylesheet(styleOptions)
 
 	return `
 		<html>
@@ -53,8 +42,8 @@ const generateHtml = (target, style, markdownOptions, ) => {
 				</style>
 			</head>
 			
-			<body class = "document">
-				<div class = "pages">
+			<body class="document">
+				<div class="pages">
 					${ html }
 				</div>
 			</body>

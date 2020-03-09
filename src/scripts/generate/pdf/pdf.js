@@ -42,33 +42,21 @@ const defaultPdfOptions = {
   },
 };
 
-const defaultMarkdownOptions = {
-  "encoding": "utf8",
-};
+const writeDebugHTML = () => {
+  console.log("Saving interim HTML...");
 
-// ---------------------------------
+  fs.writeFile("debug.html", html, function(err) {
+    if (err) console.log(err);
+  });
+}
 
 const generatePdf = async ( target, destination="./output.pdf", options, ) => {
-  console.log('Starting...')
+  console.log('Starting PDF generation...')
 
-  const style = options.customStyles 
-    ? options.customStyles 
-    : ( stylesheets[options.style] || stylesheets.dnd );
-
-  console.log("Stylesheet:", style);
-
-  const markdownOptions = ( options.markdownOptions || defaultMarkdownOptions )
-
-  console.log("Markdown options:", markdownOptions);
-
-  const html = await generateHtml( target, style, markdownOptions );
+  const html = await generateHtml( target, options );
 
   if (options.debug) {
-    console.log("Saving interim HTML...");
-
-    fs.writeFile("debug.html", html, function(err) {
-      if (err) console.log(err);
-    });
+    writeDebugHTML(html)
   }
 
   console.log("Creating PDF...");
