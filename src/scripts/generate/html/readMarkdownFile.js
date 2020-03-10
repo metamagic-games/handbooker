@@ -18,7 +18,7 @@ renderer.html = (html) => {
   return html;
 };
 
-const readMarkdownFile = ( target, markdownOptions ) => {
+const readMarkdownFile = (target, markdownOptions) => {
   console.log("Markdown options:", markdownOptions);
 
   return Markdown(

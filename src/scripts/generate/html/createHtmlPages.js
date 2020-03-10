@@ -1,4 +1,4 @@
-const markdownToHtml = ( markdown ) => {
+const createHtmlPages = ( markdown ) => {
   return markdown
     .split("\\page")
     .map(( page,  pageCount) => {
@@ -7,4 +7,4 @@ const markdownToHtml = ( markdown ) => {
     .join(" ");
 };
 
-export default markdownToHtml
+export default createHtmlPages

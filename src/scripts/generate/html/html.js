@@ -2,7 +2,7 @@ import  _ from "lodash";
 
 import readStylesheet from './readStylesheet'
 import readMarkdownFile from './readMarkdownFile'
-import markdownToHtml from './markdownToHtml'
+import createHtmlPages from './createHtmlPages'
 
 const STYLESHEETS = {
   "dnd": "./node_modules/handbooker/lib/styles/homebrewery-styles.css",
@@ -23,12 +23,12 @@ const generateHtml = (target, options={} ) => {
 
 	const html = Array.isArray(target) 
 		? target.map(path => {
-				return markdownToHtml(
+				return createHtmlPages(
 					readMarkdownFile(path, markdownOptions)
 				)
 			})
 				.join(" ") 
-		: markdownToHtml(
+		: createHtmlPages(
 			readMarkdownFile(target, markdownOptions)
 		)
 

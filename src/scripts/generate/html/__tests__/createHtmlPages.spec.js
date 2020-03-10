@@ -1,4 +1,4 @@
-import markdownToHtml from '../markdownToHtml'
+import createHtmlPages from '../createHtmlPages'
 
 const MARKDOWN_SAMPLE = `
   # Hello World
@@ -16,8 +16,8 @@ const MARKDOWN_AS_HTML = `<div class=\"phb\" id = \"p1\">
   __FOR REAL!__
 </div>`
 
-describe("markdownToHtml", () => {
+describe("createHtmlPages", () => {
   it("generates correct html", () => {
-    expect(markdownToHtml(MARKDOWN_SAMPLE)).toBe(MARKDOWN_AS_HTML);
+    expect(createHtmlPages(MARKDOWN_SAMPLE)).toBe(MARKDOWN_AS_HTML);
   });
 });
