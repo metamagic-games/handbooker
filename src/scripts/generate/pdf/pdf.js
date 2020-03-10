@@ -1,4 +1,4 @@
-import * as htmlPdfChrome from "html-pdf-chrome";
+import * as htmlPdf from "html-pdf";
 import fs from "fs";
 import generateHtml from "../html";
 
@@ -15,14 +15,7 @@ const elementDimensions = {
   "page": {
     "height": HEIGHT,
     "width": WIDTH,
-    "padding": 5,
   },
-  "card": {
-    "height": 82,
-    "width": 59,
-    "margin": 2,
-    "border": 1,
-  }
 }
 
 const defaultPdfOptions = {
@@ -42,7 +35,7 @@ const defaultPdfOptions = {
   },
 };
 
-const writeDebugHTML = () => {
+const writeDebugHTML = (html) => {
   console.log("Saving interim HTML...");
 
   fs.writeFile("debug.html", html, function(err) {
@@ -65,13 +58,15 @@ const generatePdf = async ( target, destination="./output.pdf", options, ) => {
 
   console.log("Print options:", printOptions);
 
-  return htmlPdfChrome
+  return htmlPdf
     .create(
       html, 
       printOptions,
     )
-    .then((newPdf) => newPdf.toFile(destination))
-    .then(_=>console.log(`${destination} generated`))
+    .toFile(destination, (err, res) => {
+      if (err) return console.log(err);
+      console.log(`${res.filename} generated`)
+    })
 };
 
 export default generatePdf;

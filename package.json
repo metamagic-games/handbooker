@@ -41,9 +41,10 @@
     "build"
   ],
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.8.3",
     "copyfiles": "^2.0.0",
     "fs": "0.0.1-security",
-    "html-pdf-chrome": "^0.5.0",
+    "html-pdf": "^2.2.0",
     "marked": "^0.4.0"
   },
   "devDependencies": {
