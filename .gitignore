@@ -7,3 +7,5 @@ yarn-error.log
 # Build directory
 /public
 /lib
+
+.DS_Store
