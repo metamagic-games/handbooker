@@ -11,20 +11,6 @@ const stylesheets = {
   "dnd": "./node_modules/handbooker/lib/styles/homebrewery-styles.css",
 };
 
-const elementDimensions = {
-  "page": {
-    "height": HEIGHT,
-    "width": WIDTH,
-    "padding": 5,
-  },
-  "card": {
-    "height": 82,
-    "width": 59,
-    "margin": 2,
-    "border": 1,
-  }
-}
-
 const defaultPdfOptions = {
   printOptions: {
     displayHeaderFooter: false,
@@ -33,6 +19,7 @@ const defaultPdfOptions = {
     marginRight: 0,
     marginTop: 0,
     printBackground: true,
+    //completionTrigger: new htmlPdfChrome.CompletionTrigger.Timer(15000), // milliseconds
     //paperHeight: HEIGHT,
     //paperWidth: WIDTH,
     // marginTop: elementDimensions.page.margin,
@@ -48,7 +35,7 @@ const defaultMarkdownOptions = {
 
 // ---------------------------------
 
-const generatePdf = async ( target, destination="./output.pdf", options, ) => {
+const generatePdf = async ( target, destination="./output.pdf", options,) => {
   console.log('Starting...')
 
   const style = options.customStyles 
@@ -66,7 +53,7 @@ const generatePdf = async ( target, destination="./output.pdf", options, ) => {
   if (options.debug) {
     console.log("Saving interim HTML...");
 
-    fs.writeFile("debug.html", html, function(err) {
+    fs.writeFile(options.debug.path || "debug.html", html, function(err) {
       if (err) console.log(err);
     });
   }
