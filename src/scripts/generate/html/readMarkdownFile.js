@@ -1,5 +1,6 @@
 import Markdown from "marked";
 import fs from "fs";
+import _ from "lodash";
 
 const renderer = new Markdown.Renderer();
 

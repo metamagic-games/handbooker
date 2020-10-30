@@ -120,7 +120,6 @@ blockquote {
   &:after {
     content: none;
   }
-
 }
 
 q {
@@ -128,7 +127,6 @@ q {
   &:after {
     content: none;
   }
-
 }
 
 table {
@@ -215,7 +213,7 @@ table {
       -webkit-column-span: all;
       -moz-column-span: all;
     }
-    
+
     table {
       margin-top: -5px;
       margin-bottom: 50px;
@@ -236,7 +234,6 @@ table {
     -webkit-column-span: all;
     -moz-column-span: all;
   }
-
 }
 
 @page {
@@ -394,13 +391,13 @@ body {
       font-family: ScalySans;
       font-style: italic;
     }
-    
+
     strong {
       font-family: ScalySans;
       font-weight: 800;
       letter-spacing: -0.02em;
     }
-    
+
     thead {
       font-weight: 800;
       th {
@@ -435,13 +432,13 @@ body {
       font-family: ScalySans;
       font-style: italic;
     }
-    
+
     strong {
       font-family: ScalySans;
       font-weight: 800;
       letter-spacing: -0.02em;
     }
-    
+
     p,
     ul {
       font-size: 0.352cm;
@@ -553,11 +550,11 @@ body {
     &:after {
       transform: scaleX(-1);
     }
-    
+
     .pageNumber {
       left: 2px;
     }
-    
+
     .footnote {
       left: 80px;
       text-align: left;
@@ -643,22 +640,22 @@ body {
       font-family: ScalySans;
       font-style: italic;
     }
-    
+
     strong {
       font-family: ScalySans;
       font-weight: 800;
       letter-spacing: -0.02em;
     }
-    
+
     ul + h5 {
       margin-top: 15px;
     }
-    
+
     p {
       font-size: 0.352cm;
       line-height: 1.3em;
     }
-    
+
     ul {
       font-size: 0.352cm;
       line-height: 1.3em;
@@ -719,7 +716,7 @@ body {
       font-family: ScalySans;
       font-style: italic;
     }
-    
+
     strong {
       font-family: ScalySans;
       font-weight: 800;
@@ -744,7 +741,7 @@ body {
       padding-left: 0;
       list-style-type: none;
     }
-    
+
     > ul > li {
       margin-bottom: 10px;
     }

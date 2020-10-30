@@ -1,4 +1,3 @@
-import _ from "lodash";
 import fs from "fs";
 
 import readStylesheet from "./readStylesheet";
@@ -13,7 +12,7 @@ const MARKDOWN_OPTIONS_DEFAULT = {
   encoding: "utf8",
 };
 
-const writeDebugHTML = (html, debugPath="debug.html") => {
+const writeDebugHTML = (html, debugPath = "debug.html") => {
   console.log("Saving interim HTML...");
 
   fs.writeFile(debugPath, html, (err) => {
@@ -57,8 +56,8 @@ const generateHtml = (targets, options = {}) => {
 
   const markdownOptions = {
     ...MARKDOWN_OPTIONS_DEFAULT,
-    ...options.markdownOptions
-  }
+    ...options.markdownOptions,
+  };
 
   const html = handleTargetPages(targets, markdownOptions);
 
