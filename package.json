@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/monolith-games/handbooker.git"
+    "url": "git+https://github.com/metamagic-games/handbooker.git"
   },
   "keywords": [
     "players",
@@ -27,9 +27,9 @@
   "author": "Max Clayton Clowes <maxcc@me.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/monolith-games/handbooker/issues"
+    "url": "https://github.com/metamagic-games/handbooker/issues"
   },
-  "homepage": "https://github.com/monolith-games/handbooker#readme",
+  "homepage": "https://github.com/metamagic-games/handbooker#readme",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-dir lib --ignore '**/*.spec.js' && copyfiles --up 1 src/styles/* lib",
     "format": "prettier --write src/",

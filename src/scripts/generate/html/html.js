@@ -13,10 +13,10 @@ const MARKDOWN_OPTIONS_DEFAULT = {
   encoding: "utf8",
 };
 
-const writeDebugHTML = (html) => {
+const writeDebugHTML = (html, debugPath="debug.html") => {
   console.log("Saving interim HTML...");
 
-  fs.writeFile("debug.html", html, function (err) {
+  fs.writeFile(debugPath, html, (err) => {
     if (err) console.log(err);
   });
 };
