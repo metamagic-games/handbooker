@@ -1,4 +1,4 @@
-import createHtmlPages from '../createHtmlPages'
+import createHtmlPages from "../createHtmlPages";
 
 const MARKDOWN_SAMPLE = `
   # Hello World
@@ -6,7 +6,7 @@ const MARKDOWN_SAMPLE = `
   This is some _markdown_.
 
   __FOR REAL!__
-`
+`;
 
 const MARKDOWN_AS_HTML = `<div class=\"phb\" id = \"p1\">
   # Hello World
@@ -14,7 +14,7 @@ const MARKDOWN_AS_HTML = `<div class=\"phb\" id = \"p1\">
   This is some _markdown_.
 
   __FOR REAL!__
-</div>`
+</div>`;
 
 describe("createHtmlPages", () => {
   it("generates correct html", () => {

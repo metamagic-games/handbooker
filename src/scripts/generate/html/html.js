@@ -1,54 +1,69 @@
-import  _ from "lodash";
+import _ from "lodash";
+import fs from "fs";
 
-import readStylesheet from './readStylesheet'
-import readMarkdownFile from './readMarkdownFile'
-import createHtmlPages from './createHtmlPages'
+import readStylesheet from "./readStylesheet";
+import readMarkdownFile from "./readMarkdownFile";
+import createHtmlPages from "./createHtmlPages";
 
 const STYLESHEETS = {
-  "dnd": "./node_modules/handbooker/lib/styles/homebrewery-styles.css",
+  dnd: "./node_modules/handbooker/lib/styles/homebrewery-styles.css",
 };
 
 const MARKDOWN_OPTIONS_DEFAULT = {
-  "encoding": "utf8",
+  encoding: "utf8",
 };
 
-const generateHtml = (target, options={} ) => {
-	console.log("Generating HTML...")
+const writeDebugHTML = (html) => {
+  console.log("Saving interim HTML...");
 
-	const styleOptions = options.customStyles 
-    ? options.customStyles 
-    : ( STYLESHEETS[options.style] || STYLESHEETS.dnd );
+  fs.writeFile("debug.html", html, function (err) {
+    if (err) console.log(err);
+  });
+};
 
-  const markdownOptions = options.markdownOptions || MARKDOWN_OPTIONS_DEFAULT
+const handleTargetPages = (targets, markdownOptions) => {
+  if (Array.isArray(targets)) {
+    return createHtmlPages(
+      targets.map((path) => readMarkdownFile(path, markdownOptions)).join(" ")
+    );
+  }
 
-	const html = Array.isArray(target) 
-		? target.map(path => {
-				return createHtmlPages(
-					readMarkdownFile(path, markdownOptions)
-				)
-			})
-				.join(" ") 
-		: createHtmlPages(
-			readMarkdownFile(target, markdownOptions)
-		)
+  return createHtmlPages(readMarkdownFile(targets, markdownOptions));
+};
 
-	const css = readStylesheet(styleOptions)
-
-	return `
+const buildHtml = (css, html) =>
+  `
 		<html>
 			<head>
 				<style>
-					${ css }
+					${css}
 				</style>
 			</head>
 			
 			<body class="document">
 				<div class="pages">
-					${ html }
+					${html}
 				</div>
 			</body>
 		</html>
 	`;
+
+const generateHtml = (targets, options = {}) => {
+  console.log("Generating HTML...");
+
+  const styleOptions = options.customStyles
+    ? options.customStyles
+    : STYLESHEETS[options.style] || STYLESHEETS.dnd;
+
+  const markdownOptions = options.markdownOptions || MARKDOWN_OPTIONS_DEFAULT;
+
+  const html = handleTargetPages(targets, markdownOptions);
+
+  const css = readStylesheet(styleOptions);
+
+  if (options.debug) writeDebugHTML(buildHtml(css, html));
+
+  return buildHtml(css, html);
 };
 
-export default generateHtml
+export default generateHtml;

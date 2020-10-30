@@ -1,3 +1,3 @@
-import pdf from './pdf'
+import pdf from "./pdf";
 
-export default pdf
+export default pdf;

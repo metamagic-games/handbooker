@@ -1,3 +1,3 @@
-import html from './html'
+import html from "./html";
 
-export default html
+export default html;
