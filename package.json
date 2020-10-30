@@ -31,29 +31,31 @@
   },
   "homepage": "https://github.com/monolith-games/handbooker#readme",
   "scripts": {
-    "build": "./node_modules/.bin/babel src --out-dir lib --ignore '**/*.spec.js' && copyup src/styles/* lib",
-    "format": "pretty-quick --staged",
-    "format:hard": "prettier",
+    "build": "./node_modules/.bin/babel src --out-dir lib --ignore '**/*.spec.js' && copyfiles src/styles/* lib",
+    "format": "prettier --write src/",
+    "format:staged": "pretty-quick --staged --pattern ./src/**",
     "test": "jest",
     "test:watch": "jest --watch --runInBand --bail"
   },
-  "pre-commit": [
-    "build"
-  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format:staged && npm run build"
+    }
+  },
   "dependencies": {
-    "copyfiles": "^2.0.0",
     "fs": "0.0.1-security",
-    "html-pdf-chrome": "^0.5.0",
-    "marked": "^0.4.0"
+    "html-pdf-chrome": "^0.6.1",
+    "marked": "^1.2.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "babel-jest": "^25.1.0",
+    "copyfiles": "^2.4.0",
+    "husky": "^4.3.0",
     "jest": "^25.1.0",
-    "pre-commit": "^1.2.2",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1"
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.1.0"
   }
 }
