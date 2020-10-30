@@ -1,6 +1,6 @@
 {
   "name": "handbooker",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "Turn markdown into a players handbook",
   "main": "lib/index.js",
   "directories": {
