@@ -55,7 +55,10 @@ const generateHtml = (targets, options = {}) => {
     ? options.customStyles
     : STYLESHEETS[options.style] || STYLESHEETS.dnd;
 
-  const markdownOptions = options.markdownOptions || MARKDOWN_OPTIONS_DEFAULT;
+  const markdownOptions = {
+    ...MARKDOWN_OPTIONS_DEFAULT,
+    ...options.markdownOptions
+  }
 
   const html = handleTargetPages(targets, markdownOptions);
 
