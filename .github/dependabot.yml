@@ -1,0 +1,18 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 10
+  reviewers:
+  - mcclowes
+  assignees:
+  - mcclowes
+  ignore:
+  - dependency-name: husky
+    versions:
+    - 4.3.8
+  - dependency-name: marked
+    versions:
+    - 1.2.8
