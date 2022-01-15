@@ -46,7 +46,7 @@
     "fs": "0.0.1-security",
     "html-pdf-chrome": "^0.7.1",
     "lodash": "^4.17.20",
-    "marked": "^2.0.0"
+    "marked": "^4.0.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
