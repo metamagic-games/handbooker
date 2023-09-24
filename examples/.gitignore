@@ -4,10 +4,14 @@
 node_modules
 yarn-error.log
 
-# Build directory
+# Build dir
 /public
 /lib
+/.cache
+
+# Build res
+*.pdf
+debug.html
+
 
 .DS_Store
-
-*.pdf

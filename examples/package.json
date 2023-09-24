@@ -1,0 +1,51 @@
+{
+  "name": "handbooker-sample-project",
+  "version": "1.1.1",
+  "description": "Hammerheim rules project",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel-node scripts/createRulebooks",
+    "watch": "babel-node scripts/createRulebooks",
+    "format": "prettier --write src/",
+    "format:staged": "pretty-quick --staged --pattern ./src/**"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metamagic-games/handbooker-rules.git"
+  },
+  "keywords": [
+    "hammerheim",
+    "rules",
+    "mordheim",
+    "warhammer",
+    "tabletop",
+    "game"
+  ],
+  "author": "Max Clayton Clowes <maxcc@me.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/metamagic-games/handbooker-sample-project/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format:staged && echo Did you remember to build the CV?"
+    }
+  },
+  "homepage": "https://github.com/metamagic-games/handbooker-sample-project#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.14.8",
+    "handbooker": "^1.6.6",
+    "husky": "^7.0.1",
+    "lodash": "^4.17.21",
+    "marked": "^1.2.7",
+    "merge-md": "^1.0.3",
+    "path": "^0.12.7",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.1",
+    "watch": "^1.0.2"
+  }
+}
