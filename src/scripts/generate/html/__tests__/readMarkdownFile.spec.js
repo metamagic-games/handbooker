@@ -8,7 +8,7 @@ const MARKDOWN_OPTIONS_DEFAULT = {
 describe.skip("readMarkdownFile", () => {
   it("generates correct html", () => {
     expect(readMarkdownFile(markdown, MARKDOWN_OPTIONS_DEFAULT)).toBe(
-      MARKDOWN_AS_HTML
+      MARKDOWN_AS_HTML,
     );
   });
 });

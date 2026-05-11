@@ -1,92 +1,105 @@
 # PDF
 
+PDF generation is powered by [`html-pdf-chrome`](https://www.npmjs.com/package/html-pdf-chrome).
+The options below are forwarded to Chrome's `Page.printToPDF` and mirror the
+[Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/tot/Page/#method-printToPDF).
+
 ## printOptions
 
 ### landscape
 
-Paper orientation. Defaults to false.
+Paper orientation. Defaults to `false`.
 
 `landscape?: boolean;`
 
 ### displayHeaderFooter
 
-Display header and footer. Defaults to false.
+Display header and footer. Defaults to `false`.
 
 `displayHeaderFooter?: boolean;`
 
-- Print background graphics. Defaults to false.
-  printBackground?: boolean;
+### printBackground
 
-### ds
+Print background graphics. Defaults to `false`.
 
-- Scale of the webpage rendering. Defaults to 1.
-  scale?: number;
+`printBackground?: boolean;`
 
-### ds
+### scale
 
-- Paper width in inches. Defaults to 8.5 inches.
-  paperWidth?: number;
+Scale of the webpage rendering. Defaults to `1`.
 
-### ds
+`scale?: number;`
 
-- Paper height in inches. Defaults to 11 inches.
-  paperHeight?: number;
+### paperWidth
 
-### ds
+Paper width in inches. Defaults to 8.5 inches.
 
-- Top margin in inches. Defaults to 1cm (~0.4 inches).
-  marginTop?: number;
+`paperWidth?: number;`
 
-### ds
+### paperHeight
 
-- Bottom margin in inches. Defaults to 1cm (~0.4 inches).
-  marginBottom?: number;
+Paper height in inches. Defaults to 11 inches.
 
-### ds
+`paperHeight?: number;`
 
-- Left margin in inches. Defaults to 1cm (~0.4 inches).
-  marginLeft?: number;
+### marginTop
 
-### ds
+Top margin in inches. Defaults to 1cm (~0.4 inches).
 
-- Right margin in inches. Defaults to 1cm (~0.4 inches).
-  marginRight?: number;
+`marginTop?: number;`
 
-### ds
+### marginBottom
 
-- Paper ranges to print, e.g., '1-5, 8, 11-13'.
-- Defaults to the empty string, which means print all pages.
-  pageRanges?: string;
+Bottom margin in inches. Defaults to 1cm (~0.4 inches).
+
+`marginBottom?: number;`
+
+### marginLeft
+
+Left margin in inches. Defaults to 1cm (~0.4 inches).
+
+`marginLeft?: number;`
+
+### marginRight
+
+Right margin in inches. Defaults to 1cm (~0.4 inches).
+
+`marginRight?: number;`
+
+### pageRanges
+
+Paper ranges to print, e.g. `'1-5, 8, 11-13'`. Defaults to the empty string, which means print all pages.
+
+`pageRanges?: string;`
 
 ### ignoreInvalidPageRanges
 
-- Whether to silently ignore invalid but successfully parsed
-- page ranges, such as '3-2'. Defaults to false.
-  ignoreInvalidPageRanges?: boolean;
+Whether to silently ignore invalid but successfully parsed page ranges, such as `'3-2'`. Defaults to `false`.
+
+`ignoreInvalidPageRanges?: boolean;`
 
 ### headerTemplate
 
-- HTML template for the print header.
-- Should be valid HTML markup with following classes used to inject printing values into them:
-- - `date` formatted print date
-- - `title` document title
-- - `url` document location
-- - `pageNumber` current page number
-- - `totalPages` total pages in the document
+HTML template for the print header. Should be valid HTML markup with the following classes used to inject printing values:
 
-*
+- `date` — formatted print date
+- `title` — document title
+- `url` — document location
+- `pageNumber` — current page number
+- `totalPages` — total pages in the document
 
-- For example, `<span class="title"></span>` would generate a span containing the title.
-  `headerTemplate?: string;`
+For example, `<span class="title"></span>` would generate a span containing the title.
+
+`headerTemplate?: string;`
 
 ### footerTemplate
 
-HTML template for the print footer. Should use the same format as the `headerTemplate`.
+HTML template for the print footer. Uses the same format as `headerTemplate`.
 
 `footerTemplate?: string;`
 
 ### preferCSSPageSize
 
-Whether or not to prefer page size as defined by css.
-Defaults to false, in which case the content will be scaled to fit the paper size.
+Whether to prefer the page size as defined by CSS. Defaults to `false`, in which case the content is scaled to fit the paper size.
+
 `preferCSSPageSize?: boolean;`

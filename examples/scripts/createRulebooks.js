@@ -1,14 +1,16 @@
-import { handbooker, } from "handbooker";
+import { handbooker } from "handbooker";
 
 const options = {
-	debug: true,
-	printOptions: {
-		displayHeaderFooter: false,
-	},
+  debug: true,
+  pdfOptions: {
+    printOptions: {
+      displayHeaderFooter: false,
+    },
+  },
 };
 
 const target = "./example-document.md";
 
 const destination = "./example-document.pdf";
 
-handbooker( target, destination, options, );
+handbooker(target, destination, options);

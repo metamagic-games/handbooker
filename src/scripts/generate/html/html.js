@@ -23,7 +23,7 @@ const writeDebugHTML = (html, debugPath = "debug.html") => {
 const handleTargetPages = (targets, markdownOptions) => {
   if (Array.isArray(targets)) {
     return createHtmlPages(
-      targets.map((path) => readMarkdownFile(path, markdownOptions)).join(" ")
+      targets.map((path) => readMarkdownFile(path, markdownOptions)).join(" "),
     );
   }
 

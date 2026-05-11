@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/handbooker.svg)](https://badge.fury.io/js/handbooker)
 
-Turn markdown into a Player's Handbook-style document. 
+Turn markdown into a Player's Handbook-style document.
 
 Based on [Homebrewery](https://github.com/stolksdorf/homebrewery)'s stylesheet.
 
@@ -10,20 +10,22 @@ Based on [Homebrewery](https://github.com/stolksdorf/homebrewery)'s stylesheet.
 
 ## Usage
 
-For a working example, take a look at [handbooker-sample-project](https://github.com/paragon-games/handbooker-sample-project)
+For a working example, see the [`examples/`](./examples) directory in this repo, or [handbooker-sample-project](https://github.com/metamagic-games/handbooker-sample-project).
 
 ```
   const { handbooker, } = require("handbooker");
-  
+
   const target = "./rulebook.md";
-  
+
   const destination = "./rulebook.pdf";
 
   const options = {
     "debug": true,
     "style": "dnd",
-    "printOptions": {
-      displayHeaderFooter: false,
+    "pdfOptions": {
+      printOptions: {
+        displayHeaderFooter: false,
+      },
     },
   };
 
@@ -33,11 +35,13 @@ For a working example, take a look at [handbooker-sample-project](https://github
 ## Combining multiple markdown files
 
 To merge many different Markdown files, simply replace:
+
 ```
     const target = "./rulebook.md";
 ```
 
 With:
+
 ```
     const target = [ "./rulebook.md", "./rulebook2.md", ];
 ```
@@ -46,7 +50,7 @@ With:
 
 ## Styles
 
-This package can support creation of documents in the style of several different games. 
+This package can support creation of documents in the style of several different games.
 
 ### Included styles
 

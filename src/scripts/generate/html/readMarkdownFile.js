@@ -1,32 +1,28 @@
-import Markdown from "marked";
+import { marked, Renderer } from "marked";
 import fs from "fs";
 import _ from "lodash";
 
-const renderer = new Markdown.Renderer();
+const renderer = new Renderer();
 
-//Processes the markdown within an HTML block if it's just a class-wrapper
-renderer.html = (html) => {
-  if (
-    _.startsWith(_.trim(html), "<div") &&
-    _.endsWith(_.trim(html), "</div>")
-  ) {
-    const openTag = html.substring(0, html.indexOf(">") + 1);
+renderer.html = ({ text }) => {
+  const trimmed = _.trim(text);
 
-    html = html.substring(html.indexOf(">") + 1);
+  if (_.startsWith(trimmed, "<div") && _.endsWith(trimmed, "</div>")) {
+    const openTag = text.substring(0, text.indexOf(">") + 1);
+    let inner = text.substring(text.indexOf(">") + 1);
+    inner = inner.substring(0, inner.lastIndexOf("</div>"));
 
-    html = html.substring(0, html.lastIndexOf("</div>"));
-
-    return `${openTag} ${Markdown(html)} </div>`;
+    return `${openTag} ${marked.parse(inner)} </div>`;
   }
 
-  return html;
+  return text;
 };
 
 const readMarkdownFile = (target, markdownOptions) => {
   console.log("Markdown options:", markdownOptions);
 
-  return Markdown(fs.readFileSync(target, markdownOptions.encoding), {
-    renderer: renderer,
+  return marked.parse(fs.readFileSync(target, markdownOptions.encoding), {
+    renderer,
   });
 };
 
