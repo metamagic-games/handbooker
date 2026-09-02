@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "fs": "0.0.1-security",
-    "html-pdf-chrome": "^0.7.1",
+    "html-pdf-chrome": "^0.8.4",
     "lodash": "^4.17.20",
     "marked": "^18.0.3"
   },
