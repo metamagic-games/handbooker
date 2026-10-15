@@ -81,3 +81,13 @@ Homebrewery is a fantastic tool, and this project wouldn't be possible without t
 ## Contributing
 
 If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are welcome!
+
+CI tests and builds on Node 20, 22, and 24. Use a current release of one of those versions:
+
+```sh
+npm ci
+npm test
+npm run build
+```
+
+The tests read real Markdown fixtures and check rendering, including Markdown inside HTML wrappers. They don't launch Chrome or fetch remote assets; PDF generation is a separate check.
